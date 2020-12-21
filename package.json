@@ -1,0 +1,39 @@
+{
+  "name": "v-clipboard3",
+  "author": "qiaojianfeng<845882161@qq.com>",
+  "main": "lib/v-clipboard3.umd.min.js",
+  "keyword": "vue3.0 clipboard v-clipboard",
+  "version": "0.1.1",
+  "private": false,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name v-clipboard3 --dest lib src/index.ts"
+  },
+  "bugs": "https://github.com/webweifeng/v-clipboard3/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webweifeng/v-clipboard3"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.6",
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/clipboard": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0-0",
+    "typescript": "~3.9.3"
+  }
+}
