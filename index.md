@@ -1,37 +1,102 @@
-## Welcome to GitHub Pages
+# v-clipboard3
 
-You can use the [editor on GitHub](https://github.com/webweifeng/v-clipboard3/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Easily copy to clipboard in Vue 3 (composition-api) using clipboard.js 📋
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Install
 
-### Markdown
+npm install --save v-clipboard3
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Usage
 
-```markdown
-Syntax highlighted code block
+For vue-cli user:
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```javascript
+import { createApp } from 'vue';
+// If the directive scheme is not used, no global registration is required
+import Clipboard from 'v-clipboard3';
+const app = createApp(App);
+app.use(Clipboard);
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+For standalone usage:
 
-### Jekyll Themes
+```html
+<script src="vue.min.js"></script>
+<!-- must place this line after vue.js -->
+<script src="lib/v-clipboard3.umd.min.js"></script>
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/webweifeng/v-clipboard3/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Sample
 
-### Support or Contact
+```html
+<div id="app"></div>
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+<template id="t">
+  <div class="container">
+    <input type="text" v-model="message" />
+    <button type="button" v-clipboard:copy="message" v-clipboard:success="onCopy" v-clipboard:error="onError">Copy!</button>
+  </div>
+</template>
+
+<script lang="ts">
+  import { defineComponent } from 'vue';
+
+  export default defineComponent({
+    name: 'App',
+    setup() {
+      const message = '8888';
+      function onCopy(params: any) {
+        console.log(params);
+      }
+      function onError(params: any) {
+        console.log(params);
+      }
+      return { onCopy, onError, message };
+    },
+  });
+</script>
+```
+
+## Sample 2
+
+```html
+<div id="app"></div>
+
+<template id="t">
+  <div class="container">
+    <input type="text" v-model="message" />
+    <button type="button" @click="handleCopy">Copy!</button>
+  </div>
+</template>
+
+<script lang="ts">
+  import { defineComponent } from 'vue';
+  import { useClipboard } from 'v-clipboard3';
+
+  export default defineComponent({
+    name: 'App',
+    setup() {
+      const message = '8888';
+      async handleCopy() {
+        try {
+          await useClipboard(message);
+          alert('copy ok！');
+        } catch (error) {
+          console.log(error);
+          alert('copy error!');
+        }
+      },
+      return { handleCopy, message };
+    },
+  });
+</script>
+```
+
+### Contribution
+
+PRs welcome, and issues as well! If you want any feature that we don't have currently,
+please fire an issue for a feature request.
+
+### License
+
+[MIT License](https://github.com/webweifeng/v-clipboard3/blob/main/LICENSE)
