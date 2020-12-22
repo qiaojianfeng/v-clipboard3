@@ -23,7 +23,7 @@ For standalone usage:
 ```html
 <script src="vue.min.js"></script>
 <!-- must place this line after vue.js -->
-<script src="lib/v-clipboard3.umd.min.js"></script>
+<script src="dist/v-clipboard3.min.js"></script>
 ```
 
 ## Sample
@@ -77,7 +77,7 @@ For standalone usage:
     name: 'App',
     setup() {
       const message = '8888';
-      async handleCopy() {
+      async function handleCopy() {
         try {
           await useClipboard(message);
           alert('copy ok！');
