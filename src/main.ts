@@ -1,4 +1,3 @@
-import { App } from 'vue';
 import Clipboard from 'clipboard';
 interface ClipboardOptions {
   /** Fixes IE by appending element to body */
@@ -7,10 +6,10 @@ interface ClipboardOptions {
 }
 
 export default {
-  install: (app: App, options: ClipboardOptions) => {
+  install: (app: any, options: ClipboardOptions) => {
     const autoSetContainer = options.autoSetContainer === void 0 ? false : options.autoSetContainer;
     app.directive('clipboard', {
-      mounted(el, binding) {
+      mounted(el: any, binding: any) {
         const { arg, value } = binding;
         switch (arg) {
           case 'success':
@@ -25,11 +24,11 @@ export default {
               action: () => (arg === 'cut' ? 'cut' : 'copy'),
               container: autoSetContainer ? el : undefined,
             });
-            clipboard.on('success', function(e) {
+            clipboard.on('success', function (e) {
               const callback = el._vClipboardSuccess;
               callback && callback(e);
             });
-            clipboard.on('error', function(e) {
+            clipboard.on('error', function (e) {
               const callback = el._vClipboardError;
               callback && callback(e);
             });
@@ -38,7 +37,7 @@ export default {
           }
         }
       },
-      updated(el, binding) {
+      updated(el: any, binding: any) {
         const { arg, value } = binding;
         switch (arg) {
           case 'success':
@@ -48,10 +47,10 @@ export default {
             el._vClipboardError = value;
             break;
           default:
-            el._vClipboard.text = function() {
+            el._vClipboard.text = function () {
               return binding.value;
             };
-            el._vClipboard.action = function() {
+            el._vClipboard.action = function () {
               return binding.arg === 'cut' ? 'cut' : 'copy';
             };
             break;
@@ -75,21 +74,21 @@ export default {
     });
   },
 };
-export const useClipboard = function(text: string, container?: any, options?: ClipboardOptions) {
+export const useClipboard = function (text: string, container?: any, options?: ClipboardOptions) {
   const myOptions = options || { appendToBody: true };
   const appendToBody = myOptions.appendToBody;
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     const fakeElement = document.createElement('button');
     const clipboard = new Clipboard(fakeElement, {
       text: () => text,
       action: () => 'copy',
       container: typeof container === 'object' ? container : document.body,
     });
-    clipboard.on('success', function(e) {
+    clipboard.on('success', function (e) {
       clipboard.destroy();
       resolve(e);
     });
-    clipboard.on('error', function(e) {
+    clipboard.on('error', function (e) {
       clipboard.destroy();
       reject(e);
     });
