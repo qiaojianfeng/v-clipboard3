@@ -1,5 +1,5 @@
 /*!
- * VClipboard3.js v0.1.2
+ * VClipboard3.js v0.1.3
  * (c) 2020-2020 Qiaojianfeng
  * Released under the MIT License.
  */
@@ -987,7 +987,8 @@ var Clipboard = unwrapExports(clipboard);
 
 var main = {
     install: function (app, options) {
-        var autoSetContainer = options.autoSetContainer === void 0 ? false : options.autoSetContainer;
+        var myOptions = options || { autoSetContainer: false };
+        var autoSetContainer = myOptions.autoSetContainer;
         app.directive('clipboard', {
             mounted: function (el, binding) {
                 var arg = binding.arg, value = binding.value;

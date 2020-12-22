@@ -3,7 +3,7 @@
   "author": "qiaojianfeng<845882161@qq.com>",
   "keyword": "vue3.0 clipboard v-clipboard",
   "private": false,
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "dist/v-clipboard3.min.js",
   "scripts": {
     "build": "node scripts/build.js",

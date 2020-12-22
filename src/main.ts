@@ -6,8 +6,9 @@ interface ClipboardOptions {
 }
 
 export default {
-  install: (app: any, options: ClipboardOptions) => {
-    const autoSetContainer = options.autoSetContainer === void 0 ? false : options.autoSetContainer;
+  install: (app: any, options?: ClipboardOptions) => {
+    const myOptions = options || { autoSetContainer: false };
+    const autoSetContainer = myOptions.autoSetContainer;
     app.directive('clipboard', {
       mounted(el: any, binding: any) {
         const { arg, value } = binding;
@@ -56,7 +57,7 @@ export default {
             break;
         }
       },
-      unmounted(el, binding) {
+      unmounted(el: any, binding: any) {
         const { arg } = binding;
         switch (arg) {
           case 'success':

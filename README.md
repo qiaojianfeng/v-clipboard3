@@ -77,7 +77,7 @@ For standalone usage:
     name: 'App',
     setup() {
       const message = '8888';
-      async handleCopy() {
+      async function handleCopy() {
         try {
           await useClipboard(message);
           alert('copy ok！');
